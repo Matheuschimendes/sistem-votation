@@ -11,6 +11,9 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 
+import { authClient } from "@/lib/auth-client"
+import { on } from "events"
+
 const signupSchema = z
   .object({
     name: z.string().min(3, { message: "O nome deve ter pelo menos 3 caracteres" }),
@@ -41,9 +44,26 @@ export function SignupForm() {
     },
   })
 
+  // TODO: implementar cadastro de usuário
   async function onSubmit(formData: SignupFormValues) {
 
-
+    const { data, error } = await authClient.signUp.email({
+      name: formData.name,
+      email: formData.email,
+      password: formData.password,
+    }, {
+      onRequest: (ctx) => {
+        setIsLoading(true)
+      },
+      onSuccess: (ctx) => {
+        console.log("Conta criada com sucesso")
+        router.push("/dashboard")
+      },
+      onError: (ctx) => {
+        console.log("Erro ao criar conta ")
+        console.log(ctx)
+      }
+    })
   }
 
   return (

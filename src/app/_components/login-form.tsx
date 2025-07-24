@@ -11,6 +11,9 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { TwitchLogo } from "@phosphor-icons/react";
+import { authClient } from "@/lib/auth-client";
+import { PassThrough } from "stream"
+import { on } from "events"
 
 
 const loginSchema = z.object({
@@ -35,7 +38,20 @@ export function LoginForm() {
 
   async function onSubmit(formData: LoginFormValues) {
 
-
+    const { data, error } = await authClient.signIn.email({
+      email: formData.email,
+      password: formData.password,
+    }, {
+      onRequest: (ctx) => { },
+      onSuccess: (ctx) => {
+        console.log("Conta criada com sucesso", ctx)
+        router.replace("/dashboard")
+      },
+      onError: (ctx) => {
+        console.log("Erro ao criar conta", ctx)
+        console.log(ctx)
+      }
+    })
   }
 
   return (
