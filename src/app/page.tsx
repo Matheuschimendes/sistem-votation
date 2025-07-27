@@ -1,8 +1,6 @@
-"use client"
 
 import Link from "next/link"
 import { LoginForm } from "./_components/login-form"
-import ParticipantCard from "./_components/ParticipantCard"
 
 export default function Home() {
   return (
@@ -25,7 +23,5 @@ export default function Home() {
         </div>
       </div>
     </div>
-
-
   )
 }

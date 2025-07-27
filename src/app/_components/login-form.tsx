@@ -10,7 +10,7 @@ import { Eye, EyeOff, Loader2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
-import { TwitchLogo } from "@phosphor-icons/react";
+import { GoogleLogo } from "@phosphor-icons/react";
 import { authClient } from "@/lib/auth-client";
 import { PassThrough } from "stream"
 import { on } from "events"
@@ -48,8 +48,26 @@ export function LoginForm() {
         router.replace("/dashboard")
       },
       onError: (ctx) => {
-        console.log("Erro ao criar conta", ctx)
+
+        console.log("Erro ao logar", ctx)
         console.log(ctx)
+      }
+    })
+  }
+
+  async function googleLogin() {
+    await authClient.signIn.social({
+      provider: "google",
+      callbackURL: "/dashboard",
+      fetchOptions: {
+        onSuccess: (ctx) => {
+          console.log("Conta criada com sucesso", ctx)
+          router.replace("/dashboard")
+        },
+        onError: (ctx) => {
+          console.log("Erro ao logar", ctx)
+          console.log(ctx)
+        }
       }
     })
   }
@@ -130,11 +148,11 @@ export function LoginForm() {
         <Button
           type="button"
           variant="outline"
-          className="w-full bg-[#9146FF] text-white hover:bg-[#7d3bdf] hover:text-white"
-          onClick={async () => { }}
+          className="w-full bg-[#ffffff] text-[#000000] hover:bg-[#ff1313] hover:text-white cursor-pointer"
+          onClick={googleLogin}
         >
-          <TwitchLogo className="mr-2 h-4 w-4" />
-          Entrar com Twitch
+          <GoogleLogo className="mr-2 h-4 w-4" />
+          Entrar com Google
         </Button>
       </form>
     </Form>

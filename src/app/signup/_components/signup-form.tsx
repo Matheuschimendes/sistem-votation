@@ -14,6 +14,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { authClient } from "@/lib/auth-client"
 import { on } from "events"
 
+// TODO: implementar cadastro de usuário
 const signupSchema = z
   .object({
     name: z.string().min(3, { message: "O nome deve ter pelo menos 3 caracteres" }),
@@ -34,6 +35,7 @@ export function SignupForm() {
   const [isLoading, setIsLoading] = useState(false)
   const router = useRouter()
 
+  // TODO: implementar cadastro de usuário com react-hook-form
   const form = useForm<SignupFormValues>({
     resolver: zodResolver(signupSchema),
     defaultValues: {
@@ -44,7 +46,7 @@ export function SignupForm() {
     },
   })
 
-  // TODO: implementar cadastro de usuário
+  // TODO: implementar cadastro de usuário 
   async function onSubmit(formData: SignupFormValues) {
 
     const { data, error } = await authClient.signUp.email({
@@ -56,6 +58,7 @@ export function SignupForm() {
         setIsLoading(true)
       },
       onSuccess: (ctx) => {
+
         console.log("Conta criada com sucesso")
         router.push("/dashboard")
       },

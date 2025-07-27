@@ -1,6 +1,7 @@
+"use client";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import ParticipantCard from "../_components/ParticipantCard";
+import ParticipantCard from "../ParticipantCard";
 
 interface Participant {
   id: number;
@@ -13,12 +14,12 @@ export default function Home() {
   const [participants, setParticipants] = useState<Participant[]>([]);
 
   const fetchData = async () => {
-    const res = await axios.get("http://localhost:3001/participants");
+    const res = await axios.get("http://localhost:3000/participants");
     setParticipants(res.data);
   };
 
   const vote = async (id: number) => {
-    await axios.post(`http://localhost:3001/vote/${id}`);
+    await axios.post(`http://localhost:3000/vote/${id}`);
     fetchData();
   };
 

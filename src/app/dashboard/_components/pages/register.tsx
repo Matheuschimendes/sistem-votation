@@ -1,3 +1,4 @@
+"use client";
 import { useState } from "react";
 import axios from "axios";
 
@@ -15,7 +16,7 @@ export default function Register() {
     formData.append("email", email);
     formData.append("image", image);
 
-    await axios.post("http://localhost:3001/register", formData);
+    await axios.post("http://localhost:3000/dashboard/register", formData);
     alert("Inscrição enviada!");
   };
 
