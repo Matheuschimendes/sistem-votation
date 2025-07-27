@@ -148,7 +148,7 @@ export function LoginForm() {
         <Button
           type="button"
           variant="outline"
-          className="w-full bg-[#ffffff] text-[#000000] hover:bg-[#ff1313] hover:text-white cursor-pointer"
+          className="w-full bg-[#ff1313] text-[#ffffff] hover:bg-[#000000] hover:text-white cursor-pointer"
           onClick={googleLogin}
         >
           <GoogleLogo className="mr-2 h-4 w-4" />
