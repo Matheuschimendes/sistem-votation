@@ -6,7 +6,7 @@ Uma interface de **login moderna, elegante e responsiva**, construída com o eco
 
 ---
 
-<img alt="Login Preview" src="/public/Screenshot 2025-07-24 alle 11.49.56" />
+<img alt="Login Preview" src="/public/img-exemplo.png" />
 
 <!-- A base64 completa foi cortada aqui para este exemplo visual. No arquivo real, ela estará completa. -->
 
